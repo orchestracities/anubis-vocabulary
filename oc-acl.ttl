@@ -1,0 +1,39 @@
+@prefix : <https://orchestracities.io/oc-acl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<>     dc:title "Anubis Access Control vocabulary";
+    rdfs:comment """Extend W3C Web Access Control with custom definitions for Anubis. """ .
+
+:Delete     a rdfs:Class;
+    rdfs:comment """Delete accesses are specific write access which only delete information.""";
+    rdfs:label "append"@en;
+    rdfs:subClassOf acl:Access,
+          acl:Write .
+
+:ResourceTenantAgent     a rdfs:Class;
+    rdfs:comment """A class of agents who have been authenticated and that belongs
+to the same Tenant to which the resource requested belongs.
+In other words, anyone who belong to the same Tenant as the resource can access
+this resource, but not anonymously.
+""";
+    rdfs:label "Anyone belonging to the resource tenant";
+    rdfs:subClassOf foaf:Agent,
+          acl:AuthenticatedAgent .
+
+:constraint     a rdf:Property;
+    rdfs:comment "The rules to be satisfied to access the resource";
+    rdfs:domain acl:Authorization;
+    rdfs:label "Has Constraint"@en;
+    rdfs:range [
+      a owl:Class ;
+      owl:unionOf ( odrl:Constraint odrl:LogicalConstraint ) ;
+    ] .
+
+<https://anubis-pep.readthedocs.org/>     dc:describes <> .
+
+<https://github.com/orchestracities/anubis-vocabulary>     dc:describes <> .
