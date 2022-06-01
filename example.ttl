@@ -1,0 +1,16 @@
+@base <http://example.com/> .
+@prefix ex: <http://example.com/> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> . 
+@prefix oc-acl: <http://voc.orchestracities.io/oc-acl#> . 
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+ex:constraint1 a odrl:Constraint ;
+      odrl:leftOperand odrl:dateTime ;
+      odrl:operator odrl:lt ;
+      odrl:rightOperand "2023-01-01"^^xsd:date .
+
+ex:policy1 a acl:Authorization ;
+        acl:accessTo <urn:entity:1> ;
+        acl:agentClass <acl:agentClass:Admin> ;
+        oc-acl:constraint ex:constraint1 ;
+        acl:mode acl:Read, oc-acl:Delete .
