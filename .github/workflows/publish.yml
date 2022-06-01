@@ -10,11 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        clean: false
-    - uses: actions/checkout@v3
-      with:
         ref: gh-pages
         clean: false
+        fetch-depth: 0
     - name: Copy vocabulary
       run: git restore --source master oc-acl.ttl
     - name: Rename vocabulary
