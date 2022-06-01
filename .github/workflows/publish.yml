@@ -14,9 +14,9 @@ jobs:
         clean: false
         fetch-depth: 0
     - name: Copy vocabulary
-      run: git restore --source master oc-acl.ttl
+      run: git restore --source origin/master oc-acl.ttl
     - name: Rename vocabulary
-      run: mv oc-acl.ttl
+      run: mv -f oc-acl.ttl oc-acl
     - name: Commit changes
       run: |
         git config user.name github-actions
