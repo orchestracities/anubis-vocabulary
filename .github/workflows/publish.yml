@@ -9,17 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Change branch
-      run: git checkout gh-pages
+      with:
+        ref: gh-pages
     - name: Copy vocabulary
       run: git restore --source master oc-acl.ttl
     - name: Rename vocabulary
       run: mv oc-acl.ttl
     - name: Commit changes
-      run:|
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -A
-          git commit -m "update vocabulary in gh-pages"
-          git push
+        git add -A
+        git commit -m "update vocabulary in gh-pages"
+        git push
