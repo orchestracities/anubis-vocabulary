@@ -1,4 +1,4 @@
-@prefix : <http://orchestracities.io/oc-acl#> .
+@prefix : <http://voc.orchestracities.io/oc-acl#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix acl: <http://www.w3.org/ns/auth/acl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -8,13 +8,13 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://orchestracities.io/oc-acl#> .
+@base <http://voc.orchestracities.io/oc-acl#> .
 
 <> rdf:type owl:Ontology ;
-                                    owl:versionIRI <http://orchestracities.io/oc-acl/0.1> ;
-                                    dc:title "Anubis Access Control vocabulary" ;
-                                    rdfs:comment "Extend W3C Web Access Control with custom definitions for Anubis. " ;
-                                    rdfs:seeAlso "https://anubis-pep.readthedocs.io/en/latest/" .
+                                         owl:versionIRI <http://voc.orchestracities.io/oc-acl/0.1> ;
+                                         dc:title "Anubis Access Control vocabulary" ;
+                                         rdfs:comment "Extend W3C Web Access Control with custom definitions for Anubis. " ;
+                                         rdfs:seeAlso "https://anubis-pep.readthedocs.io/en/latest/" .
 
 #################################################################
 #    Annotation properties
@@ -32,7 +32,7 @@ dc:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://orchestracities.io/oc-acl#constraint
+###  http://voc.orchestracities.io/oc-acl#constraint
 :constraint rdf:type owl:ObjectProperty ;
             rdfs:domain acl:Authorization ;
             rdfs:range [ rdf:type owl:Class ;
@@ -48,7 +48,7 @@ dc:title rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-###  http://orchestracities.io/oc-acl#Delete
+###  http://voc.orchestracities.io/oc-acl#Delete
 :Delete rdf:type owl:Class ;
         rdfs:subClassOf acl:Access ,
                         acl:Write ;
@@ -56,7 +56,7 @@ dc:title rdf:type owl:AnnotationProperty .
         rdfs:label "Delete"@en .
 
 
-###  http://orchestracities.io/oc-acl#ResourceTenantAgent
+###  http://voc.orchestracities.io/oc-acl#ResourceTenantAgent
 :ResourceTenantAgent rdf:type owl:Class ;
                      rdfs:subClassOf acl:AuthenticatedAgent ,
                                      foaf:Agent ;
@@ -92,7 +92,7 @@ odrl:Constraint rdf:type owl:Class .
 odrl:LogicalConstraint rdf:type owl:Class .
 
 
-###  http://xmlns.com/foaf/spec/Agent
+###  http://xmlns.com/foaf/0.1/Agent
 foaf:Agent rdf:type owl:Class .
 
 
