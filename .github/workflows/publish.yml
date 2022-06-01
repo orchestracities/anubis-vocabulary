@@ -17,10 +17,8 @@ jobs:
       run: git restore --source origin/master oc-acl.ttl
     - name: Rename vocabulary
       run: mv -f oc-acl.ttl oc-acl
-    - name: Commit changes
+    - name: Commit changes (if any)
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git add -A
-        git commit -m "update vocabulary in gh-pages"
-        git push
+        git diff-index --quiet HEAD || (git commit -a -m'[bot] update vocabulary in gh-pages' --allow-empty && git push -f)
