@@ -1,0 +1,17 @@
+name: Validate Vocabulary
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Copy vocabulary to gh-pages
+      uses: planetoftheweb/copy-to-branches@v1
+      env:
+        key: master
+        branches: gh-pages
+        files: oc-acl.ttl
