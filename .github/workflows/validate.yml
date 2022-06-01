@@ -18,4 +18,5 @@ jobs:
       with:
         node-version: 12
         cache: 'npm'
+    - run: npm install -g turtle-validator
     - run: ttl oc-acl.ttl
