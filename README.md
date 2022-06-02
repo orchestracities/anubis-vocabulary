@@ -94,11 +94,11 @@ digital media access management (e.g. [Absolute Spatial Asset Position](https://
 in the context of oc-acl, to support attribute based access control (ABAC),
 extensions a required. In particular, to allow the definition
 of attribute based expressions on `actors` and `resources`, we introduced 
-a sub class of the `LeftOperand` concept, called `LeftOperandAttribute` that
-has the following properties:
-- `scope`, that defined whether the scope of the operand is `subject` or
-  `object` (for the time being `environment`, often used in ABAC is left out);
-- `attributeName` that define the name of the attribute to which the operator
+a sub class of the `LeftOperand` concept, called [`GenericLeftOperand`]( http://voc.orchestracities.io/oc-acl#GenericLeftOperand)
+that has the following properties:
+- [`scope`](http://voc.orchestracities.io/oc-acl#scope) that defines whether the scope of the operand is [`subject`](http://voc.orchestracities.io/oc-acl#subject)
+  or [`object`](http://voc.orchestracities.io/oc-acl#object) (for the time being `environment`, often used in ABAC, is left out);
+- [`attributeName`](http://voc.orchestracities.io/oc-acl#attributeName) that defines the name of the attribute to which the operator
    will be applied.
 
 Leveraging this information, a policy that would allow read access to a given
