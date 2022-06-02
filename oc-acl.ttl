@@ -32,6 +32,18 @@
             rdfs:label "Has Constraint"@en .
 
 
+###  http://voc.orchestracities.io/oc-acl#attributeName
+:attributeName a rdf:Property , owl:ObjectProperty ;
+            rdfs:domain oc-acl:GenericLeftOperand ;
+            rdfs:comment "The name of the attribute to which the operand is applied" ;
+            rdfs:label "Has Attribute Name"@en .
+
+###  http://voc.orchestracities.io/oc-acl#scope
+:scope a rdf:Property , owl:ObjectProperty ;
+            rdfs:domain oc-acl:GenericLeftOperand ;
+            rdfs:comment "The scope of the operand (object or subject)" ;
+            rdfs:label "Has scope"@en .
+
 #################################################################
 #    Classes
 #################################################################
@@ -54,6 +66,15 @@ In other words, anyone who belong to the same Tenant as the resource can access
 this resource, but not anonymously.
 """ ;
                      rdfs:label "Resource Tenant Agent"@en .
+
+
+###  http://voc.orchestracities.io/oc-acl#GenericLeftOperand
+:GenericLeftOperand a rdfs:Class , owl:Class ;
+                    rdfs:subClassOf odrl:LeftOperand ;
+                    rdfs:comment """A left operand that allows to define the scope
+of the operand, and the attribute to which the operand apply
+""" ;
+                    rdfs:label "Generic Left Operand"@en .
 
 #################################################################
 #    Annotations
