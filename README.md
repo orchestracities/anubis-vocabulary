@@ -28,8 +28,8 @@ In the current version of the vocabulary, a policy is an
   that defines the authorized agents.
 - an [*access constraint*](https://www.w3.org/TR/odrl-model/#constraint)
   (i.e. an `oc-acl:constraint` predicate) that [extends authorization](https://solid.github.io/web-access-control-spec/#authorization-extensions)
-  supported by WAC vocabulary with ODRL constraints that need to be verified for an
-  authorized agent to perform an operation on a resource.
+  supported by WAC vocabulary with ODRL constraints that need to be verified for
+  an authorized agent to perform an operation on a resource.
 
 As result, policies in oc-acl looks like:
 
