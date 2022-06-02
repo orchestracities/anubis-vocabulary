@@ -7,8 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  validate:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,3 +19,4 @@ jobs:
         cache: 'npm'
     - run: npm install -g turtle-validator
     - run: ttl oc-acl.ttl
+    - run: ttl example.ttl
