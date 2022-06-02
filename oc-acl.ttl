@@ -34,13 +34,15 @@
 
 ###  http://voc.orchestracities.io/oc-acl#attributeName
 :attributeName a rdf:Property , owl:ObjectProperty ;
-            rdfs:domain oc-acl:GenericLeftOperand ;
+            rdfs:domain :GenericLeftOperand ;
+            rdfs:range rdfs:Literal ;
             rdfs:comment "The name of the attribute to which the operand is applied" ;
             rdfs:label "Has Attribute Name"@en .
 
 ###  http://voc.orchestracities.io/oc-acl#scope
 :scope a rdf:Property , owl:ObjectProperty ;
-            rdfs:domain oc-acl:GenericLeftOperand ;
+            rdfs:domain :GenericLeftOperand ;
+            rdfs:range :Scope ;
             rdfs:comment "The scope of the operand (object or subject)" ;
             rdfs:label "Has scope"@en .
 
@@ -75,6 +77,12 @@ this resource, but not anonymously.
 of the operand, and the attribute to which the operand apply
 """ ;
                     rdfs:label "Generic Left Operand"@en .
+
+
+###  http://voc.orchestracities.io/oc-acl#Scope
+:Scope a rdfs:Class , owl:Class ;
+                    rdfs:comment """The scope of a left operand""" ;
+                    rdfs:label "Scope"@en .
 
 #################################################################
 #    Annotations
