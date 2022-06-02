@@ -60,7 +60,7 @@ and `delete` operations only before `2023-01-01`.
 The oc-acl vocabulary, beyond introducing the `oc-acl:constraint` predicate, extends
 Web Access Control vocabulary with the following classes:
 
-- `oc-acl:Delete` [extends access modes](https://solid.github.io/web-access-control-spec/#access-mode-extensions) 
+- `oc-acl:Delete` [extends access modes](https://solid.github.io/web-access-control-spec/#access-mode-extensions)
 by providing a specific [write access mode](https://solid.github.io/web-access-control-spec/#acl-mode-write)
 which only allows to delete information.
 
@@ -75,31 +75,41 @@ additional operators, given that existing ones covers already all possible
 logical expressions (and, or, ...).
 
 Boolean expressions are composed of different items:
+
 - a [`leftOperand`](https://www.w3.org/TR/odrl-vocab/#term-LeftOperand),
-the left operand for a constraint expression.
+  the left operand for a constraint expression.
+
 - an [`operator`](https://www.w3.org/TR/odrl-vocab/#constraintRelationalOperators)
+
 - a [`rightOperand`](https://www.w3.org/TR/odrl-vocab/#term-rightOperand),
-the value of the right operand in a constraint expression, or a [`rightOperandReference`](https://www.w3.org/TR/odrl-vocab/#term-rightOperandReference), i.e.
-a reference to a web resource providing the value for the right operand of a 
-Constraint.
+  the value of the right operand in a constraint expression, or a [`rightOperandReference`](https://www.w3.org/TR/odrl-vocab/#term-rightOperandReference), i.e.
+  a reference to a web resource providing the value for the right operand of a
+  Constraint.
+
 - a [`dataType`](https://www.w3.org/TR/odrl-vocab/#term-dataType),
-the datatype of the value of the rightOperand or rightOperandReference
-of a Constraint.
+  the datatype of the value of the rightOperand or rightOperandReference
+  of a Constraint.
+
 - a [`unit`](https://www.w3.org/TR/odrl-vocab/#term-unit),
-the unit of measurement of the value of the rightOperand or
-rightOperandReference of a Constraint.
+  the unit of measurement of the value of the rightOperand or
+  rightOperandReference of a Constraint.
 
 While several of the `LeftOperand` instances in place make sense only for
 digital media access management (e.g. [Absolute Spatial Asset Position](https://www.w3.org/TR/odrl-vocab/#term-absoluteSpatialPosition)),
 in the context of oc-acl, to support attribute based access control (ABAC),
 extensions a required. In particular, to allow the definition
-of attribute based expressions on `actors` and `resources`, we introduced 
+of attribute based expressions on `actors` and `resources`, we introduced
 a sub class of the `LeftOperand` concept, called [`GenericLeftOperand`]( http://voc.orchestracities.io/oc-acl#GenericLeftOperand)
 that has the following properties:
-- [`scope`](http://voc.orchestracities.io/oc-acl#scope) that defines whether the scope of the operand is [`subject`](http://voc.orchestracities.io/oc-acl#subject)
-  or [`object`](http://voc.orchestracities.io/oc-acl#object) (for the time being `environment`, often used in ABAC, is left out);
-- [`attributeName`](http://voc.orchestracities.io/oc-acl#attributeName) that defines the name of the attribute to which the operator
-   will be applied.
+
+- [`scope`](http://voc.orchestracities.io/oc-acl#scope) that defines whether the
+  scope of the operand is [`subject`](http://voc.orchestracities.io/oc-acl#subject)
+  or [`object`](http://voc.orchestracities.io/oc-acl#object) (for the time being
+  `environment`, often used in ABAC, is left out);
+
+- [`attributeName`](http://voc.orchestracities.io/oc-acl#attributeName) that
+  defines the name of the attribute to which the operator
+  will be applied.
 
 Leveraging this information, a policy that would allow read access to a given
 resource only for actors born before 1st January 1978, would look something
