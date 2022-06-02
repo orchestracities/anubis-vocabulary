@@ -15,3 +15,18 @@ ex:policy1 a acl:Authorization ;
         acl:agentClass <acl:agentClass:Admin> ;
         oc-acl:constraint ex:constraint1 ;
         acl:mode acl:Read, oc-acl:Delete .
+
+ex:leftOperand1 a oc-acl:LeftOperandAttribute ;
+    oc-acl:scope oc-acl:subject ;
+    oc-acl:attributeName "dateOfBirth" .
+
+ex:constraint2 a odrl:Constraint ;
+    odrl:leftOperand ex:leftOperand1 ;
+    odrl:operator odrl:lt ;
+    odrl:rightOperand "1978-01-01"^^xsd:date .
+
+ex:policy2 a acl:Authorization ;
+        acl:accessTo <urn:entity:1> ;
+        acl:agentClass acl:AuthenticatedAgent ;
+        oc-acl:constraint ex:constraint2 ;
+        acl:mode acl:Read .
