@@ -39,6 +39,7 @@ As result, policies in oc-acl looks like:
 @prefix acl: <http://www.w3.org/ns/auth/acl#> . 
 @prefix oc-acl: <http://voc.orchestracities.io/oc-acl#> . 
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:constraint1 a odrl:Constraint ;
       odrl:leftOperand odrl:dateTime ;
