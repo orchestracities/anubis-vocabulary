@@ -132,4 +132,3 @@ ex:policy1 a acl:Authorization ;
 
 Of course specific `leftOperand` may be additionally defined based on
 the different scenarios of application of oc-acl.
-
