@@ -18,18 +18,18 @@ In the current version of the vocabulary, a policy is an
 (i.e. instance of `acl:Authorization`) with the following properties:
 
 - an [*access object*](https://solid.github.io/web-access-control-spec/#access-objects)
-(i.e. an `acl:accessTo` predicate) that defines the resources to which the
-authorization rule provide access to.
+  (i.e. an `acl:accessTo` predicate) that defines the resources to which the
+  authorization rule provide access to.
 - an [*access mode*](https://solid.github.io/web-access-control-spec/#access-modes)
-(i.e. an `acl:mode` predicate) that defines the actions an authorized agent can
-perform on a resource.
+  (i.e. an `acl:mode` predicate) that defines the actions an authorized agent can
+  perform on a resource.
 - an [*access subject*](https://solid.github.io/web-access-control-spec/#access-subjects)
-(i.e. an `acl:agent` or `acl:agentClass` or `acl:agentGroup` predicate)
-that defines the authorized agents.
+  (i.e. an `acl:agent` or `acl:agentClass` or `acl:agentGroup` predicate)
+  that defines the authorized agents.
 - an [*access constraint*](https://www.w3.org/TR/odrl-model/#constraint)
-(i.e. an `oc-acl:constraint` predicate) that [extends authorization](https://solid.github.io/web-access-control-spec/#authorization-extensions)
-supported by WAC vocabulary with ODRL constraints that need to be verified for an
-authorized agent to perform an operation on a resource.
+  (i.e. an `oc-acl:constraint` predicate) that [extends authorization](https://solid.github.io/web-access-control-spec/#authorization-extensions)
+  supported by WAC vocabulary with ODRL constraints that need to be verified for an
+  authorized agent to perform an operation on a resource.
 
 As result, policies in oc-acl looks like:
 
@@ -61,10 +61,11 @@ The oc-acl vocabulary, beyond introducing the `oc-acl:constraint` predicate, ext
 Web Access Control vocabulary with the following classes:
 
 - `oc-acl:Delete` [extends access modes](https://solid.github.io/web-access-control-spec/#access-mode-extensions)
-by providing a specific [write access mode](https://solid.github.io/web-access-control-spec/#acl-mode-write)
-which only allows to delete information.
+  by providing a specific [write access mode](https://solid.github.io/web-access-control-spec/#acl-mode-write)
+  which only allows to delete information.
 
-- `oc-acl:ResourceTenantAgent`, an [authenticated agent](https://solid.github.io/web-access-control-spec/#acl-agentclass-authenticated-agent) that belongs to the same tenant as the resource authorized.
+- `oc-acl:ResourceTenantAgent`, an [authenticated agent](https://solid.github.io/web-access-control-spec/#acl-agentclass-authenticated-agent)
+  that belongs to the same tenant as the resource authorized.
 
 Constraints in ODRL are either boolean expression (cf. [Constraint](https://www.w3.org/TR/odrl-vocab/#constraints))
 or logical expressions (cf. [Logical Constraint](https://www.w3.org/TR/odrl-vocab/#logicalConstraints)
@@ -82,9 +83,9 @@ Boolean expressions are composed of different items:
 - an [`operator`](https://www.w3.org/TR/odrl-vocab/#constraintRelationalOperators)
 
 - a [`rightOperand`](https://www.w3.org/TR/odrl-vocab/#term-rightOperand),
-  the value of the right operand in a constraint expression, or a [`rightOperandReference`](https://www.w3.org/TR/odrl-vocab/#term-rightOperandReference), i.e.
-  a reference to a web resource providing the value for the right operand of a
-  Constraint.
+  the value of the right operand in a constraint expression, or a [`rightOperandReference`](https://www.w3.org/TR/odrl-vocab/#term-rightOperandReference),
+  i.e. a reference to a web resource providing the value for the right operand
+  of a Constraint.
 
 - a [`dataType`](https://www.w3.org/TR/odrl-vocab/#term-dataType),
   the datatype of the value of the rightOperand or rightOperandReference
