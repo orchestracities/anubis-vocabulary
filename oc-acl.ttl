@@ -84,6 +84,20 @@ of the operand, and the attribute to which the operand apply
                     rdfs:comment """The scope of a left operand""" ;
                     rdfs:label "Scope"@en .
 
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://voc.orchestracities.io/oc-acl#Subject
+:Subject a owl:NamedIndividual , :Scope ;
+  rdfs:label "Subject"@en .
+
+###  http://voc.orchestracities.io/oc-acl#Object
+:Object a owl:NamedIndividual , :Scope ;
+  rdfs:label "Object"@en .
+
+
 #################################################################
 #    Annotations
 #################################################################
