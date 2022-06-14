@@ -1,31 +1,19 @@
 @prefix : <http://voc.orchestracities.io/oc-acl#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix acl: <http://www.w3.org/ns/auth/acl#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @base <http://voc.orchestracities.io/oc-acl#> .
 
-<> rdf:type owl:Ontology ;
-                                         owl:versionIRI <http://voc.orchestracities.io/oc-acl/0.1> ;
-                                         dc:title "Anubis Access Control vocabulary" ;
-                                         rdfs:comment "Extend W3C Web Access Control with custom definitions for Anubis. " ;
-                                         rdfs:seeAlso "https://anubis-pep.readthedocs.io/en/latest/" .
-
-#################################################################
-#    Annotation properties
-#################################################################
-
-###  http://purl.org/dc/elements/1.1/describes
-dc:describes rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/title
-dc:title rdf:type owl:AnnotationProperty .
+<>
+  dc:title "Anubis Access Control vocabulary" ;
+  rdfs:comment "Extend W3C Web Access Control with custom definitions for Anubis. " ;
+  rdfs:seeAlso "https://anubis-pep.readthedocs.io/en/latest/" .
 
 
 #################################################################
@@ -33,9 +21,9 @@ dc:title rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://voc.orchestracities.io/oc-acl#constraint
-:constraint rdf:type owl:ObjectProperty ;
+:constraint a rdf:Property , owl:ObjectProperty ;
             rdfs:domain acl:Authorization ;
-            rdfs:range [ rdf:type owl:Class ;
+            rdfs:range [ a owl:Class ;
                          owl:unionOf ( odrl:Constraint
                                        odrl:LogicalConstraint
                                      )
@@ -44,12 +32,26 @@ dc:title rdf:type owl:AnnotationProperty .
             rdfs:label "Has Constraint"@en .
 
 
+###  http://voc.orchestracities.io/oc-acl#attributeName
+:attributeName a rdf:Property , owl:ObjectProperty ;
+            rdfs:domain :GenericLeftOperand ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "The name of the attribute to which the operand is applied" ;
+            rdfs:label "Has Attribute Name"@en .
+
+###  http://voc.orchestracities.io/oc-acl#scope
+:scope a rdf:Property , owl:ObjectProperty ;
+            rdfs:domain :GenericLeftOperand ;
+            rdfs:range :Scope ;
+            rdfs:comment "The scope of the operand (object or subject)" ;
+            rdfs:label "Has scope"@en .
+
 #################################################################
 #    Classes
 #################################################################
 
 ###  http://voc.orchestracities.io/oc-acl#Delete
-:Delete rdf:type owl:Class ;
+:Delete a rdfs:Class ;
         rdfs:subClassOf acl:Access ,
                         acl:Write ;
         rdfs:comment "Delete accesses are specific write access which only delete information." ;
@@ -57,7 +59,7 @@ dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://voc.orchestracities.io/oc-acl#ResourceTenantAgent
-:ResourceTenantAgent rdf:type owl:Class ;
+:ResourceTenantAgent a rdfs:Class ;
                      rdfs:subClassOf acl:AuthenticatedAgent ,
                                      foaf:Agent ;
                      rdfs:comment """A class of agents who have been authenticated and that belongs
@@ -68,32 +70,32 @@ this resource, but not anonymously.
                      rdfs:label "Resource Tenant Agent"@en .
 
 
-###  http://www.w3.org/ns/auth/acl#Access
-acl:Access rdf:type owl:Class .
+###  http://voc.orchestracities.io/oc-acl#GenericLeftOperand
+:GenericLeftOperand a rdfs:Class , owl:Class ;
+                    rdfs:subClassOf odrl:LeftOperand ;
+                    rdfs:comment """A left operand that allows to define the scope
+of the operand, and the attribute to which the operand apply
+""" ;
+                    rdfs:label "Generic Left Operand"@en .
 
 
-###  http://www.w3.org/ns/auth/acl#AuthenticatedAgent
-acl:AuthenticatedAgent rdf:type owl:Class .
+###  http://voc.orchestracities.io/oc-acl#Scope
+:Scope a rdfs:Class , owl:Class ;
+                    rdfs:comment """The scope of a left operand""" ;
+                    rdfs:label "Scope"@en .
 
 
-###  http://www.w3.org/ns/auth/acl#Authorization
-acl:Authorization rdf:type owl:Class .
+#################################################################
+#    Individuals
+#################################################################
 
+###  http://voc.orchestracities.io/oc-acl#subject
+:subject a owl:NamedIndividual , :Scope ;
+  rdfs:label "Subject"@en .
 
-###  http://www.w3.org/ns/auth/acl#Write
-acl:Write rdf:type owl:Class .
-
-
-###  http://www.w3.org/ns/odrl/2/Constraint
-odrl:Constraint rdf:type owl:Class .
-
-
-###  http://www.w3.org/ns/odrl/2/LogicalConstraint
-odrl:LogicalConstraint rdf:type owl:Class .
-
-
-###  http://xmlns.com/foaf/0.1/Agent
-foaf:Agent rdf:type owl:Class .
+###  http://voc.orchestracities.io/oc-acl#object
+:object a owl:NamedIndividual , :Scope ;
+  rdfs:label "Object"@en .
 
 
 #################################################################
