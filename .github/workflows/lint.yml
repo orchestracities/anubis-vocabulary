@@ -1,0 +1,22 @@
+# This action works with pull requests and pushes
+name: Linter
+
+on:
+  pull_request:
+  push:
+    branches:
+    - master
+
+jobs:
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{github.event.pull_request.head.ref}}
+        repository: ${{github.event.pull_request.head.repo.full_name}}
+    - name: Lint
+      uses: docker://avtodev/markdown-lint:v1 # fastest way
+      with:
+        config: '.github/lint/config.json'
+        args: '**/*.md'

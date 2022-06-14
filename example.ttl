@@ -1,0 +1,32 @@
+@base <http://example.com/> .
+@prefix ex: <http://example.com/> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> . 
+@prefix oc-acl: <http://voc.orchestracities.io/oc-acl#> . 
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:constraint1 a odrl:Constraint ;
+      odrl:leftOperand odrl:dateTime ;
+      odrl:operator odrl:lt ;
+      odrl:rightOperand "2023-01-01"^^xsd:date .
+
+ex:policy1 a acl:Authorization ;
+        acl:accessTo <urn:entity:1> ;
+        acl:agentClass <acl:agentClass:Admin> ;
+        oc-acl:constraint ex:constraint1 ;
+        acl:mode acl:Read, oc-acl:Delete .
+
+ex:leftOperand1 a oc-acl:LeftOperandAttribute ;
+    oc-acl:scope oc-acl:subject ;
+    oc-acl:attributeName "dateOfBirth" .
+
+ex:constraint2 a odrl:Constraint ;
+    odrl:leftOperand ex:leftOperand1 ;
+    odrl:operator odrl:lt ;
+    odrl:rightOperand "1978-01-01"^^xsd:date .
+
+ex:policy2 a acl:Authorization ;
+        acl:accessTo <urn:entity:1> ;
+        acl:agentClass acl:AuthenticatedAgent ;
+        oc-acl:constraint ex:constraint2 ;
+        acl:mode acl:Read .

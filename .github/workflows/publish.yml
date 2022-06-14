@@ -1,4 +1,4 @@
-name: Validate Vocabulary
+name: Publish Vocabulary
 
 on:
   push:
