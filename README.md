@@ -166,8 +166,8 @@ data protection rule (i.e. instance of `oc-acl:DataProtection`) with the
 following properties:
 
 - an *protected resource*
-  (i.e. an `oc-acl:protectedResource` predicate) that defines the resources to which the
-  data protection rule applies to. It can by a resource, or a class
+  (i.e. an `oc-acl:protectedResource` predicate) that defines the resources to
+  which the data protection rule applies to. It can by a resource, or a class
   of resources.
 - an *protected attribute*
   (i.e. an `oc-acl:protectedAttribute` predicate) that defines the attribute of
