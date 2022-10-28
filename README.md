@@ -173,18 +173,17 @@ following properties:
   (i.e. an `oc-acl:protectedAttribute` predicate) that defines the attribute of
   the resource that is protected by the rule (thus allowing multiple attributes
   having different protection techniques).
-- an [*protection mode*] (i.e. an `oc-acl:protectionMode` predicate) that
+- an *protection mode* (i.e. an `oc-acl:protectionMode` predicate) that
   defines wether the protection occurs in transit (i.e. [`dpv:EncryptionInTransfer`](https://w3id.org/dpv/dpv-skos#EncryptionInTransfer))
   or at rest (i.e. [`dpv:EncryptionAtRest`](https://w3id.org/dpv/dpv-skos#EncryptionAtRest)).
-- a [*protection technique*] (i.e. an `oc-acl:protectionTechnique` predicate)
+- a *protection technique* (i.e. an `oc-acl:protectionTechnique` predicate)
   that defines which algorithm is used to protect the resource, i.e. instances
   of [`dpv:DataAnonymisationTechnique`](https://w3id.org/dpv/dpv-skos#DataAnonymisationTechnique)
   or [`dpv:CryptographicMethods`](https://w3id.org/dpv/dpv-skos#CryptographicMethods)
   techniques.
 
-  Leveraging this information, a policy that would allow read access to a given
-  resource only for actors born before 1st January 1978, would look something
-  like:
+Leveraging this information, a policy that would encrypt with Homorphic
+Encryption in transfer of the attribute:1 of entity:1 would be:
 
 ```ttl
 @base <http://example.com/> .
