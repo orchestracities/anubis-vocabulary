@@ -4,6 +4,7 @@
 @prefix oc-acl: <http://voc.orchestracities.io/oc-acl#> . 
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpv: <http://w3id.org/dpv/dpv-skos#> .
 
 ex:constraint1 a odrl:Constraint ;
       odrl:leftOperand odrl:dateTime ;
@@ -14,7 +15,7 @@ ex:policy1 a acl:Authorization ;
         acl:accessTo <urn:entity:1> ;
         acl:agentClass <acl:agentClass:Admin> ;
         oc-acl:constraint ex:constraint1 ;
-        acl:mode acl:Read, oc-acl:Delete .
+        acl:mode oc-acl:Decrypt, oc-acl:Delete .
 
 ex:leftOperand1 a oc-acl:LeftOperandAttribute ;
     oc-acl:scope oc-acl:subject ;
@@ -30,3 +31,9 @@ ex:policy2 a acl:Authorization ;
         acl:agentClass acl:AuthenticatedAgent ;
         oc-acl:constraint ex:constraint2 ;
         acl:mode acl:Read .
+
+ex:policyProtection1 a oc-acl:DataProtection ;
+        oc-acl:protectedResource <urn:entity:1> ;
+        oc-acl:protectedAttribute <urn:attribute:1> ;
+        oc-acl:protectionMode dpv:EncryptionInTransfer ;
+        oc-acl:protectionTechnique dpv:HomomorphicEncryption .

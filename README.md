@@ -50,7 +50,7 @@ ex:policy1 a acl:Authorization ;
         acl:accessTo <urn:entity:1> ;
         acl:agentClass <acl:agentClass:Admin> ;
         oc-acl:constraint ex:constraint1 ;
-        acl:mode acl:Read, oc-acl:Delete .
+        acl:mode oc-acl:Decrypt, oc-acl:Delete .
 ```
 
 This example policy states that users with role `Admin`
@@ -66,6 +66,14 @@ Web Access Control vocabulary with the following classes:
 
 - `oc-acl:ResourceTenantAgent`, an [authenticated agent](https://solid.github.io/web-access-control-spec/#acl-agentclass-authenticated-agent)
   that belongs to the same tenant as the resource authorized.
+
+- `oc-acl:Decrypt` [extends access modes](https://solid.github.io/web-access-control-spec/#access-mode-extensions)
+  by providing a specific [read access mode](https://solid.github.io/web-access-control-spec/#acl-mode-read)
+  which only allows to decrypt encrypted data. This would allow to specify that
+  a given actor can read decrypted values of a specific attribute. This access
+  mode is meant to be combined with [data protection policies](#Data Protection Policies).
+
+### Attribute Based Access Control
 
 Constraints in ODRL are either boolean expression (cf. [Constraint](https://www.w3.org/TR/odrl-vocab/#constraints))
 or logical expressions (cf. [Logical Constraint](https://www.w3.org/TR/odrl-vocab/#logicalConstraints)
@@ -143,3 +151,51 @@ ex:policy1 a acl:Authorization ;
 
 Of course specific `leftOperand` may be additionally defined based on
 the different scenarios of application of oc-acl.
+
+### Data Protection Policies
+
+Beyond access control policies, we introduced a new set of policies (agent
+independent) that defines which data protection policy is applied to
+a specific attribute within a data or data type. While such policies are not
+a simple extension to Web Access Control, but rather a new set of policies,
+we include them in the same vocabulary since they are strictly related.
+The policies leverage the [Data Privacy Vocabulary (DPV)](https://w3c.github.io/dpv/dpv-skos/).
+
+In the current version of the vocabulary, a data protection policy is an
+data protection rule (i.e. instance of `oc-acl:DataProtection`) with the
+following properties:
+
+- an *protected resource*
+  (i.e. an `oc-acl:protectedResource` predicate) that defines the resources to
+  which the data protection rule applies to. It can by a resource, or a class
+  of resources.
+- an *protected attribute*
+  (i.e. an `oc-acl:protectedAttribute` predicate) that defines the attribute of
+  the resource that is protected by the rule (thus allowing multiple attributes
+  having different protection techniques).
+- an *protection mode* (i.e. an `oc-acl:protectionMode` predicate) that
+  defines wether the protection occurs in transit (i.e. [`dpv:EncryptionInTransfer`](https://w3id.org/dpv/dpv-skos#EncryptionInTransfer))
+  or at rest (i.e. [`dpv:EncryptionAtRest`](https://w3id.org/dpv/dpv-skos#EncryptionAtRest)).
+- a *protection technique* (i.e. an `oc-acl:protectionTechnique` predicate)
+  that defines which algorithm is used to protect the resource, i.e. instances
+  of [`dpv:DataAnonymisationTechnique`](https://w3id.org/dpv/dpv-skos#DataAnonymisationTechnique)
+  or [`dpv:CryptographicMethods`](https://w3id.org/dpv/dpv-skos#CryptographicMethods)
+  techniques.
+
+Leveraging this information, a policy that would encrypt with Homorphic
+Encryption in transfer of the attribute:1 of entity:1 would be:
+
+```ttl
+@base <http://example.com/> .
+@prefix ex: <http://example.com/> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> . 
+@prefix oc-acl: <http://voc.orchestracities.io/oc-acl#> . 
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:policyProtection1 a oc-acl:DataProtection ;
+        oc-acl:protectedResource <urn:entity:1> ;
+        oc-acl:protectedAttribute <urn:attribute:1> ;
+        oc-acl:protectionMode dpv:EncryptionInTransfer ;
+        oc-acl:protectionTechnique dpv:HomomorphicEncryption .
+```
