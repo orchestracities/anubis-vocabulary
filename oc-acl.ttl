@@ -58,6 +58,14 @@
         rdfs:label "Delete"@en .
 
 
+###  http://voc.orchestracities.io/oc-acl#Decript
+:Decrypt a rdfs:Class ;
+        rdfs:subClassOf acl:Access ,
+                        acl:Read ;
+        rdfs:comment "allow to read and decrypt values (if encrypted)." ;
+        rdfs:label "Decrypt"@en .
+
+
 ###  http://voc.orchestracities.io/oc-acl#ResourceTenantAgent
 :ResourceTenantAgent a rdfs:Class ;
                      rdfs:subClassOf acl:AuthenticatedAgent ,

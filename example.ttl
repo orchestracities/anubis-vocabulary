@@ -14,7 +14,7 @@ ex:policy1 a acl:Authorization ;
         acl:accessTo <urn:entity:1> ;
         acl:agentClass <acl:agentClass:Admin> ;
         oc-acl:constraint ex:constraint1 ;
-        acl:mode acl:Read, oc-acl:Delete .
+        acl:mode oc-acl:Decrypt, oc-acl:Delete .
 
 ex:leftOperand1 a oc-acl:LeftOperandAttribute ;
     oc-acl:scope oc-acl:subject ;

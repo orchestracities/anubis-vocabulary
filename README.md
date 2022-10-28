@@ -50,7 +50,7 @@ ex:policy1 a acl:Authorization ;
         acl:accessTo <urn:entity:1> ;
         acl:agentClass <acl:agentClass:Admin> ;
         oc-acl:constraint ex:constraint1 ;
-        acl:mode acl:Read, oc-acl:Delete .
+        acl:mode oc-acl:Decrypt, oc-acl:Delete .
 ```
 
 This example policy states that users with role `Admin`
@@ -66,6 +66,14 @@ Web Access Control vocabulary with the following classes:
 
 - `oc-acl:ResourceTenantAgent`, an [authenticated agent](https://solid.github.io/web-access-control-spec/#acl-agentclass-authenticated-agent)
   that belongs to the same tenant as the resource authorized.
+
+- `oc-acl:Decrypt` [extends access modes](https://solid.github.io/web-access-control-spec/#access-mode-extensions)
+  by providing a specific [read access mode](https://solid.github.io/web-access-control-spec/#acl-mode-read)
+  which only allows to decrypt encrypted data. This would allow to specify that
+  a given actor can read decrypted values of a specific attribute. This access
+  mode is meant to be combined with [data protection policies]().
+
+### Attribute Based Access Control
 
 Constraints in ODRL are either boolean expression (cf. [Constraint](https://www.w3.org/TR/odrl-vocab/#constraints))
 or logical expressions (cf. [Logical Constraint](https://www.w3.org/TR/odrl-vocab/#logicalConstraints)
@@ -143,3 +151,10 @@ ex:policy1 a acl:Authorization ;
 
 Of course specific `leftOperand` may be additionally defined based on
 the different scenarios of application of oc-acl.
+
+### Data Protection Policies
+
+Beyond access control policies, we introduced a new set of policies (agent
+independent) that defines which data protection policy is applied to
+a specific attribute within a data or data type.
+
