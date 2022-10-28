@@ -8,6 +8,8 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dpv: <http://w3id.org/dpv/dpv-skos#> .
+@prefix gen: <http://www.w3.org/2006/gen/ont#> .
 @base <http://voc.orchestracities.io/oc-acl#> .
 
 <>
@@ -46,9 +48,50 @@
             rdfs:comment "The scope of the operand (object or subject)" ;
             rdfs:label "Has scope"@en .
 
+###  http://voc.orchestracities.io/oc-acl#protectedResource
+:protectedResource     a rdf:Property;
+     :comment "The information resource protected by the policy.";
+     :domain :DataProtection;
+     :label "protected resource";
+     :range gen:InformationResource .
+
+###  http://voc.orchestracities.io/oc-acl#protectedAttribute
+:protectedAttribute     a rdf:Property;
+    :comment "The fragment of information inside the resource protected by the policy.";
+    :domain :DataProtection;
+    :label "protected attribute";
+    :range gen:InformationResource .
+
+###  http://voc.orchestracities.io/oc-acl#protectionMode
+:protectionMode   a rdf:Property;
+    :comment "A mode of protection such at rest or in transit";
+    :domain :DataProtection;
+    :label "protection mode";
+    :range [ a owl:Class ;
+                 owl:unionOf ( dpv:EncryptionInTransfer
+                               dpv:EncryptionAtRest
+                             )
+               ] .
+
+###  http://voc.orchestracities.io/oc-acl#protectionTechnique
+:protectionTechnique   a rdf:Property;
+   :comment "The technique of protection such as Pseudo Anonymization";
+   :domain :DataProtection;
+   :label "protection technique";
+   :range [ a owl:Class ;
+                owl:unionOf ( dpv:DataAnonymisationTechnique
+                              dpv:CryptographicMethods
+                            )
+              ] .
+
 #################################################################
 #    Classes
 #################################################################
+
+###  http://voc.orchestracities.io/oc-acl#DataProtection
+:DataProtection    a :Class;
+     :comment """An data protection policy, defining data protection techniques applied to a set of data attributes""";
+     :label "Data Protection" .
 
 ###  http://voc.orchestracities.io/oc-acl#Delete
 :Delete a rdfs:Class ;
