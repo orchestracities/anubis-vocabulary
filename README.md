@@ -71,7 +71,7 @@ Web Access Control vocabulary with the following classes:
   by providing a specific [read access mode](https://solid.github.io/web-access-control-spec/#acl-mode-read)
   which only allows to decrypt encrypted data. This would allow to specify that
   a given actor can read decrypted values of a specific attribute. This access
-  mode is meant to be combined with [data protection policies]().
+  mode is meant to be combined with [data protection policies](#Data Protection Policies).
 
 ### Attribute Based Access Control
 
@@ -173,11 +173,12 @@ following properties:
   (i.e. an `oc-acl:protectedAttribute` predicate) that defines the attribute of
   the resource that is protected by the rule (thus allowing multiple attributes
   having different protection techniques).
-- an [*protection mode*] (i.e. an `oc-acl:protectionMode` predicate) that defines wether
-  the protection occurs in transit (i.e. [`dpv:EncryptionInTransfer`](https://w3id.org/dpv/dpv-skos#EncryptionInTransfer))
+- an [*protection mode*] (i.e. an `oc-acl:protectionMode` predicate) that
+  defines wether the protection occurs in transit (i.e. [`dpv:EncryptionInTransfer`](https://w3id.org/dpv/dpv-skos#EncryptionInTransfer))
   or at rest (i.e. [`dpv:EncryptionAtRest`](https://w3id.org/dpv/dpv-skos#EncryptionAtRest)).
-- a [*protection technique*] (i.e. an `oc-acl:protectionTechnique` predicate) that defines which
-  algorithm is used to protect the resource, i.e. instances of [`dpv:DataAnonymisationTechnique`](https://w3id.org/dpv/dpv-skos#DataAnonymisationTechnique)
+- a [*protection technique*] (i.e. an `oc-acl:protectionTechnique` predicate)
+  that defines which algorithm is used to protect the resource, i.e. instances
+  of [`dpv:DataAnonymisationTechnique`](https://w3id.org/dpv/dpv-skos#DataAnonymisationTechnique)
   or [`dpv:CryptographicMethods`](https://w3id.org/dpv/dpv-skos#CryptographicMethods)
   techniques.
 
